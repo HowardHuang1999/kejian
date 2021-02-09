@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>广东省流浪动物救助平台--管理员后台</title>
+  <link rel="stylesheet" href="../css/layui.css">
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+
+<body class="layui-layout-body">
+  <script src="../js/jquery-1.10.1.js"></script>
+  <script src="../js/layui.js"></script>
+  <script src="../js/index.js"></script>
+  <script>
+    layui.use(['layer', 'form'], function(){
+       var layer = layui.layer
+       ,form = layui.form;
+      // layer.msg('登录成功');
+    });
+    </script> 
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+      <div class="layui-logo">广东省流浪动物救助平台</div>
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+            <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3892521478,1695688217&fm=26&gp=0.jpg"
+              class="layui-nav-img">
+            admin
+          </a>
+        </li>
+        <li class="layui-nav-item"><a href="#" class="logout">退出系统</a></li>
+      </ul>
+    </div>
+    
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <ul class="layui-nav layui-nav-tree" lay-filter="test" id="btn">
+          <li class="layui-nav-item"><a href="#">新闻中心</a></li>
+          <li class="layui-nav-item"><a href="#">救助信息管理</a></li>
+          <li class="layui-nav-item"><a href="#">领养申请管理</a></li>
+          <li class="layui-nav-item"><a href="#">收容动物管理</a></li>
+          <li class="layui-nav-item"><a href="#">志愿者管理</a></li>
+          <li class="layui-nav-item"><a href="#">注册用户管理</a></li>
+          <li class="layui-nav-item"><a href="#">留言板</a></li>
+          <li class="layui-nav-item"><a href="#">查看邮件</a></li>
+          <!-- <li class="layui-nav-item"><a href="#">发送私信</a></li> -->
+        </ul>
+      </div>
+    </div>
+
+    <script type="text/html" id="bar1">
+        
+      <div class="layui-inline" lay-event="add">
+        <a class="layui-icon layui-icon-add-1">新增</a>
+      </div> 
+      <div class="layui-inline" lay-event="delete">
+        <a class="layui-icon layui-icon-delete">删除</a>
+      </div>
+      <div class="layui-inline" lay-event="refresh">
+        <a class="layui-icon layui-icon-refresh">刷新</a>
+      </div>
+    </script>
+
+    <script type="text/html" id="bar2">  
+        <a class="layui-btn layui-btn-xs "lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-xs "lay-event="delline">删除</a>
+    </script>
+
+    <script type="text/html" id="bar3">
+      <a class="layui-btn layui-btn layui-btn-danger" lay-event="edit">审核</a>
+      <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+      <a class="layui-btn layui-btn-xs" lay-event="delline">删除</a>
+  </script>
+        
+  <script type="text/html" id="bar4">  
+    <a class="layui-btn layui-btn-xs layui-btn-disabled"lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs"lay-event="delline">删除</a>
+  </script>
+
+  <script type="text/html" id="bar5">
+    <div class="layui-inline" lay-event="add">
+      <a class="layui-icon layui-icon-add-1">新增</a>
+    </div> 
+    <div class="layui-inline" lay-event="delete">
+      <a class="layui-icon layui-icon-delete">删除</a>
+    </div>
+    <div class="layui-inline" lay-event="refresh">
+      <a class="layui-icon layui-icon-refresh">刷新</a>
+    </div>
+    <div class="layui-inline" style="float:right;height:29px;" title="搜索" lay-event="LAYTABLE_SEARCH">
+      <i class="layui-icon layui-icon-search"></i>
+    </div> 
+    
+	  <input type="text" id="search_title" style="width:200px;float:right;height:30px;" placeholder="请输入搜索内容" autocomplete="off" class="layui-input">
+  </script>
+
+    <div class="layui-body">
+      
+     
+      <!-- <div class="notList" >
+        <h1 class="title">新闻中心</h1>
+        <ul class="content">
+        </ul>
+      </div> -->
+      <div>
+        <h1 class="title">新闻中心</h1>
+        <table class="layui-hide" id="news" lay-filter="news"></table>
+        <!-- <div id="page"></div> -->
+      </div>
+      
+      <div>
+        <h1 class="title">救助信息管理</h1>
+        <table class="layui-hide" id="help" lay-filter="help"></table>
+      </div>
+
+      <div>
+        <h1 class="title">领养申请管理</h1>
+        <table class="layui-hide" id="adopt" lay-filter="adopt"></table>
+        
+      </div>
+
+      <div id="animals" class="del searchani">
+        <h1 class="title">收容动物管理</h1>
+          <input type="text" placeholder="输入动物ID或昵称查询" class="search">
+          <button class="layui-btn anibutton">新增动物</button>
+          <ul>
+          </ul>
+      </div>
+
+      <div>
+        <h1 class="title">志愿者管理</h1>
+        <table class="layui-hide" id="vol" lay-filter="vol"></table>
+      </div>
+
+      <div>
+        <h1 class="title">注册用户管理</h1>
+        <table class="layui-hide" id="buser" lay-filter="buser"></table>
+      </div>
+
+      <div>
+        <h1 class="title">留言板管理</h1>
+        <table class="layui-hide" id="mesbd" lay-filter="mesbd"></table>
+      </div>
+
+      <div>
+        <h1 class="title">查看邮件</h1>
+        <table class="layui-hide" id="email" lay-filter="email"></table>
+      </div>
+
+      <!-- <div>
+        <h1 class="title">发送私信</h1>
+      </div> -->
+
+    </div>
+  </div>
+  
+  <!-- 发布新闻弹窗页面 -->
+  <div style="display: none;" id="newupload" >
+    <div class="">
+      <div style="height: 10%;"></div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">新闻标题</label>
+        <div class="layui-input-block">
+          <input type="text" id="ntitle" name="ntitle" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">新闻正文</label>
+        <div>
+          <textarea rows="10" id="ncontent" name="ncontent" autocomplete="off" placeholder="请输入正文" class="layui-textarea" ></textarea>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">显示状态</label>
+        <div class="select" >
+          <input type="radio" name="nstatus" value="1" checked>显示
+          <input type="radio" name="nstatus" value="0">隐藏
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 发布救助弹窗页面 -->
+  <div style="display: none;" id="helpupload">
+    <div style="height: 10%;"></div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">申请人姓名</label>
+        <div class="layui-input-block">
+          <input type="text" id="name" name="name" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">电话</label>
+        <div class="layui-input-block">
+          <input type="text" id="phone" name="phone" autocomplete="off" placeholder="请输入电话号码" lay-verify="phone" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">救助详情</label>
+        <div>
+          <textarea rows="6" id="introduce" name="introduce" autocomplete="off" placeholder="请输入正文" class="layui-textarea" ></textarea>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">救助地址</label>
+        <div class="layui-input-block">
+          <input type="text" id="address" name="address" autocomplete="off" placeholder="请输入地址" class="layui-input">
+        </div>
+      </div>
+  </div>
+
+  <!-- 发布救助弹窗页面 -->
+  <div style="display: none;" id="adoptupload">
+    <div style="height: 10%;"></div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">领养人姓名</label>
+        <div class="layui-input-block">
+          <input type="text" id="dname" name="dname" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">电话</label>
+        <div class="layui-input-block">
+          <input type="text" id="dphone" name="dphone" autocomplete="off" placeholder="请输入电话号码" lay-verify="phone" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">身份证号码</label>
+        <div class="layui-input-block">
+          <input type="text" id="idcard" name="idcard" autocomplete="off" placeholder="请输入身份证号码" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+          <input type="text" id="dsex" name="dsex" autocomplete="off" placeholder="请输入性别" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">年龄</label>
+        <div class="layui-input-block">
+          <input type="text" id="dage" name="dage" autocomplete="off" placeholder="请输入年龄" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">领养意图</label>
+        <div>
+          <textarea rows="5" id="dintroduce" name="dintroduce" autocomplete="off" placeholder="请输入领养意愿动物和缘由" class="layui-textarea" ></textarea>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">居住地址</label>
+        <div class="layui-input-block">
+          <input type="text" id="daddress" name="daddress" autocomplete="off" placeholder="请输入地址" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">动物ID</label>
+        <div class="layui-input-block">
+          <input type="text" id="danimalsid" name="danimalsid" autocomplete="off" placeholder="请输入领养动物ID" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">房产信息</label>
+        <div class="layui-input-block">
+          <input type="text" id="house" name="house" autocomplete="off" placeholder="请输入有无房产" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">工作单位</label>
+        <div class="layui-input-block">
+          <input type="text" id="unitname" name="unitname" autocomplete="off" placeholder="请输入工作单位" class="layui-input">
+        </div>
+      </div>
+  </div>
+
+  <!-- 新增志愿者弹窗页面 -->
+  <div style="display: none;" id="volupload">
+    <div style="height: 10%;"></div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">申请人姓名</label>
+        <div class="layui-input-block">
+          <input type="text" id="vname" name="vname" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">电话</label>
+        <div class="layui-input-block">
+          <input type="text" id="vphone" name="vphone" autocomplete="off" placeholder="请输入电话号码" lay-verify="phone" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+          <input type="text" id="vsex" name="vsex" autocomplete="off" placeholder="请输入性别" lay-verify="phone" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">年龄</label>
+        <div class="layui-input-block">
+          <input type="text" id="vage" name="vage" autocomplete="off" placeholder="请输入年龄" lay-verify="phone" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">邮箱</label>
+        <div class="layui-input-block">
+          <input type="text" id="vemail" name="vemail" autocomplete="off" placeholder="请输入个人邮箱" lay-verify="phone" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">个人简介</label>
+        <div>
+          <textarea rows="5" id="vintroduce" name="vintroduce" autocomplete="off" placeholder="请输入个人介绍" class="layui-textarea" ></textarea>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">家庭地址</label>
+        <div class="layui-input-block">
+          <input type="text" id="vaddress" name="vaddress" autocomplete="off" placeholder="请输入地址" class="layui-input">
+        </div>
+      </div>
+  </div>
+
+  <!-- 注册用户弹窗页面 -->
+  <div style="display: none;" id="buserupload">
+    <div style="height: 10%;"></div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">*登录名</label>
+        <div class="layui-input-block">
+          <input type="text" id="bname" name="bname" autocomplete="off" placeholder="请输入登录名" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">*昵称</label>
+        <div class="layui-input-block">
+          <input type="text" id="username" name="username" autocomplete="off" placeholder="请输入昵称" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">*密码</label>
+        <div class="layui-input-block">
+          <input type="password" id="bpwd" name="bpwd" autocomplete="off" placeholder="请输入密码" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">账户状态</label>
+        <div class="select" >
+          <input type="radio" name="bstatus" value="1" checked>正常
+          <input type="radio" name="bstatus" value="0">屏蔽
+        </div>
+      </div>
+  </div>
+
+  <!-- 留言板弹窗页面 -->
+  <div style="display: none;" id="mesbdupload">
+    <div style="height: 10%;"></div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">用户ID</label>
+        <div class="layui-input-block">
+          <input type="text" id="mesbid" name="mesbid" autocomplete="off" placeholder="请输入用户ID" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">留言标题</label>
+        <div class="layui-input-block">
+          <input type="text" id="mestitle" name="mestitle" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">正文</label>
+        <div>
+          <textarea rows="6" id="mescontent" name="mescontent" autocomplete="off" placeholder="请输入正文" class="layui-textarea" ></textarea>
+        </div>
+      </div>
+  </div>
+
+  <!-- 发送邮件弹窗页面 -->
+  <div style="display: none;" id="emailupload">
+    <div style="height: 10%;"></div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">邮件标题</label>
+        <div class="layui-input-block">
+          <input type="text" id="emailtitle" name="emailtitle" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">正文</label>
+        <div>
+          <textarea rows="6" id="emailcontent" name="emailcontent" autocomplete="off" placeholder="请输入正文" class="layui-textarea" ></textarea>
+        </div>
+      </div>
+  </div>
+  
+  <script type="text/javascript">
+    //JavaScript代码区域
+    layui.use('element', function () {
+      var element = layui.element;
+    });
+  </script>
+</body>
+
+</html>

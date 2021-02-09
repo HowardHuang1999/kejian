@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loveanimals.loveanimals.dao.admin.AnimalsVideoDao">
+
+    <select id="findAnimalsVideoByTitle" resultType="com.loveanimals.loveanimals.po.AnimalsVideo" parameterType="java.lang.String">
+        select *
+        FROM animalsvideo
+        WHERE animalsvideo.title like concat('%',concat(#{title},'%')) or animalsvideo.introduce like concat('%',concat(#{introduce},'%'))
+    </select>
+
+</mapper>

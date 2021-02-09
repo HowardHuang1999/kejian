@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loveanimals.loveanimals.dao.admin.BuserDao">
+
+
+    <select id="findAnimalsCollection" resultType="com.loveanimals.loveanimals.po.Animals" parameterType="java.lang.Integer">
+        select *
+        FROM animalstable
+        left join animalscollection on animalstable.id=animalscollection.animalsid
+        left join busertable on busertable.id=animalscollection.buserid
+        WHERE animalscollection.collection='1' AND animalscollection.buserid=#{buserid}
+    </select>
+
+    <select id="findPrivateletter" resultType="com.loveanimals.loveanimals.po.Privateletter" parameterType="java.lang.Integer">
+        select *
+        FROM privateletter
+        left join busertable on busertable.id=privateletter.buserid
+        WHERE privateletter.buserid=#{buserid}
+    </select>
+
+
+
+</mapper>

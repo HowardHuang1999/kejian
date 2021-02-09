@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loveanimals.loveanimals.dao.admin.MessageboardAboutBuserDao">
+
+
+    <select id="findMessageBoardAboutBuser" resultType="com.loveanimals.loveanimals.vo.MessageBoardAndBuser">
+        select
+        busertable.username,
+        busertable.headphoto,
+        messageboard.title,
+        messageboard.content,
+        messageboard.create_time
+        FROM busertable
+        left join messageboard on busertable.id=messageboard.buserid
+        WHERE busertable.status='1'
+    </select>
+
+    <select id="findMessage" resultType="com.loveanimals.loveanimals.vo.MessageBoardAndBuser" parameterType="java.lang.String">
+        select
+        busertable.username,
+        busertable.headphoto,
+        messageboard.title,
+        messageboard.content,
+        messageboard.create_time
+        FROM busertable
+        left join messageboard on busertable.id=messageboard.buserid
+        WHERE messageboard.title like concat('%',concat(#{title},'%')) or messageboard.content like concat('%',concat(#{content},'%'))
+    </select>
+
+    <select id="findMessageByBuserid" resultType="com.loveanimals.loveanimals.vo.MessageBoardAndBuser" parameterType="java.lang.Integer">
+        select
+        busertable.username,
+        busertable.headphoto,
+        messageboard.title,
+        messageboard.content,
+        messageboard.create_time
+        FROM busertable
+        left join messageboard on busertable.id=messageboard.buserid
+        WHERE messageboard.buserid = #{buserid}
+    </select>
+</mapper>

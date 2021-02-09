@@ -1,0 +1,212 @@
+.layui-body>div {
+  display: none;
+}
+
+.layui-body>div:first-child {
+  display: block;
+}
+
+.layui-form>.layui-form-item {
+  width: 500px;
+}
+
+#addPro>h2 {
+  margin: 20px 0 20px 220px;
+}
+
+#animals {
+  position: relative;
+}
+
+.title {
+  position: relative;
+  left: 50%;
+  transform: translate(-75px);
+}
+
+#animals>ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#volunteer>ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#animals>ul>li {
+  width: 280px;
+  height: 400px;
+  background-color: #ccc;
+  border: 1px solid black;
+  margin: 0 50px;
+  margin-top: 30px;
+  border-radius: 15px;
+}
+
+#volunteer>ul>li {
+  width: 200px;
+  height: 200px;
+  background-color: #ccc;
+  border: 1px solid black;
+  margin: 0 50px;
+  margin-top: 30px;
+}
+
+.del>ul>li {
+  height: 300px!important;
+}
+
+.del>ul>li>#button {
+  position: relative;
+  top: 20px;
+  left: 70px;
+}
+
+#animals>ul>li>div#textarea {
+  height: 80px;
+}
+
+#animals>ul>li>div#textarea>textarea {
+  height: 70px;
+  width: 200px;
+}
+
+#animals>ul>li>button {
+  width: 40px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: red;
+  margin-left: 30px;
+}
+
+#volunteer>ul>li>button {
+  width: 40px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: red;
+  margin-left: 30px;
+}
+
+#animals>ul>li>div {
+  margin: 15px;
+}
+
+#animals>input {
+  width: 200px;
+  height: 30px;
+  margin: 0 50px;
+  border-radius: 10px;
+}
+
+#volunteer>input {
+  width: 200px;
+  height: 30px;
+  margin: 0 50px;
+  border-radius: 10px;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content>li{
+  
+  width:500px;
+  height:100px;
+  margin:25px 40px;
+  padding:5px 20px;
+  border:1px solid green;
+}
+
+/* 弹框 */
+.alert {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 300px;
+  max-width: 600px;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  text-align: center;
+  padding: 15px;
+  border-radius: 3px;
+}
+
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+#tover{
+  text-overflow: ellipsis;
+  height: 60px;
+  overflow: auto;
+}
+/* 下面是用来自动换行的 */
+/* .layui-table-cell {
+  font-size:14px;
+  padding:0 5px;
+  height:auto;
+  overflow:visible;
+  text-overflow:inherit;
+  white-space:normal;
+  word-break: break-all;
+} */
+
+/* 取消bar图标宽度 */
+.layui-table-tool .layui-inline[lay-event] {
+  width: initial;
+}
+/* 更改文本域宽度 */
+.layui-input, .layui-textarea,#ntitle{
+  width: 80%;
+}
+
+.layui-input, .layui-textarea,#ncontent{
+  width: 90%;
+  left: 25px;
+}
+/* 
+.layui-table-cell {
+
+  height: auto;
+
+  line-height: 28px;
+
+} */
+
+.anibutton{
+  position: absolute;
+  right: 20%;
+  background-color: #1e9fff !important;
+}
+
+.select > input {
+  margin-right: 8px;
+  font-size: 22px;
+  color: #c2c2c2;
+  width: 20px;
+  height: 20px;
+}
+
+div > .layui-layer-btn > .layui-layer-btn2 {
+
+  border-color:#fff;
+  
+
+
+  background-color:  #e92222;
+
+  color: #333;
+
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loveanimals.loveanimals.dao.admin.AnimalsDao">
+
+    <select id="findAnimalsByname" resultType="com.loveanimals.loveanimals.po.Animals" parameterType="java.lang.String">
+        select *
+        FROM animalstable
+        WHERE animalstable.aname like concat('%',concat(#{aname},'%'))
+    </select>
+
+</mapper>
